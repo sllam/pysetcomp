@@ -1,0 +1,43 @@
+
+Set Comprehension Extension for z3 in Python (pysetcomp), Prototype Alpha
+
+Authors:
+Edmund S. L. Lam      sllam@qatar.cmu.edu
+Iliano Cervesato      iliano@cmu.edu
+
+* This implementation was made possible by an NPRP grant (NPRP 09-667-1-100, Effective Programming for Large Distributed Ensembles) from the Qatar National Research Fund (a member of the Qatar Foundation). The statements made herein are solely the responsibility of the authors.
+
+############
+Introduction
+############
+
+pysetcomp is a lightweight Python library that extends the popular Z3 SMT solver with the ability to reason about the satisfiability of set comprehension patterns.
+
+For more information on how pysetcomp works, see our paper "Reasoning About Set Comprehension", which can be found at http://www.qatar.cmu.edu/~sllam/ .
+
+##################
+Basic Requirements
+##################
+
+i) Python 2.7 (https://www.python.org/)
+
+ii) z3Py: Python APIs for z3 SMT Solver (Check https://z3.codeplex.com/ for installation details)
+
+iii) A love for comprehending set comprehensions
+
+* Currently only tested on Ubuntu, but do try on other platforms and feel free to report any bugs or issues to us!
+
+###############
+Getting Started
+###############
+
+Assuming that you have Python and z3 installed.
+
+First install the pysetcomp library:
+> python setup.py install
+
+Test pysetcomp on your system:
+> python demo.py
+
+Then you are good to go!
+
