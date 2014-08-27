@@ -162,7 +162,46 @@ def mk_tup(*args):
 	Tuple = tupleInfo(*sorts)['sort']
 	return Tuple.tup(*args)
 
+# Lists
 
+list_sort_dict = {}
+list_elem_sort_dict = {}
+
+def listInfo(sort):
+	name = sort.name()
+	if name not in list_elem_sort_dict:
+		List = z3.Datatype('List_' + sort.name())
+		List.declare('cons', ('head', sort), ('tail', List))
+		List.declare('nil')
+		List = List.create()
+		linfo = { 'sort':List, 'elem':sort, 'cons':List.cons, 'nil':List.nil }
+		list_elem_sort_dict[name]   = linfo
+		list_sort_dict[List.name()] = linfo
+	return list_elem_sort_dict[name]
+
+def listInfoFromList(sort):
+	return list_sort_dict[sort.name()]
+
+def mkListSort(sort):
+	return listInfo(sort)['sort']
+
+def List(n, sort):
+	List = listInfo(sort)['sort']
+	return z3.Const(n, List)
+
+def Lists(ns, sort):
+	List = listInfo(sort)['sort']
+	return z3.Consts(ns, List)
+
+def VList(sort, *args):
+	List = listInfo(sort)['sort']
+	ls = List.nil
+	index = len(args)-1
+	while index >= 0:
+		ls = List.cons(args[index], ls)
+		index -= 1
+	return ls
+		
 
 # Term combinators
 # Non-z3 terms are of 'dict' type.
